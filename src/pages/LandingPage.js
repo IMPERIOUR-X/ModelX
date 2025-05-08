@@ -1,9 +1,13 @@
 import React from "react";
+import PageHeader from "../components/shared/PageHeader";
+import theme from "../theme";
+import HeroSection from "../components/landing/HeroSection";
 
 function LandingPage(props) {
   return (
     <div>
-      <h1>Hello world!</h1>
+      <PageHeader />
+      <HeroSection />
     </div>
   );
 }
