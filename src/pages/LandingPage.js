@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
-import PageHeader from "../components/shared/PageHeader";
+import AppHeader from "../components/shared/AppHeader";
 import theme from "../theme";
 import HeroSection from "../components/landing/HeroSection";
 import { styled } from "@mui/material";
 import ShortDescriptionSection from "../components/landing/ShortDescriptionSection";
 import FeaturingContributorsSection from "../components/landing/FeaturingContributorsSection";
 import HowItWorksSection from "../components/landing/HowItWorksSection";
+import ModelXFeaturesSection from "../components/landing/ModelXFeaturesSection";
+import JoinNowSection from "../components/landing/JoinNowSection";
+import AppFooter from "../components/shared/AppFooter";
 
 const LandingPageWrapper = styled("main")({
   background: theme.mainBackgroundColor,
@@ -23,11 +26,14 @@ function LandingPage(props) {
   }, []);
   return (
     <LandingPageWrapper>
-      <PageHeader />
+      <AppHeader />
       <HeroSection windowWidth={windowWidth} />
       <ShortDescriptionSection />
       <FeaturingContributorsSection />
       <HowItWorksSection />
+      <ModelXFeaturesSection />
+      <JoinNowSection />
+      <AppFooter />
     </LandingPageWrapper>
   );
 }

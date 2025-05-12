@@ -47,7 +47,7 @@ const CardsWrapper = styled("div")({
   display: "flex",
   flexDirection: "row",
   flexWrap: "wrap",
-  padding: "50px 0 0",
+  padding: "30px 0 0",
   justifyContent: "center",
   gap: "30px",
 });
@@ -157,7 +157,7 @@ function HowItWorksSection(props) {
       <CardsWrapper>
         {guides.map((guide, index) => {
           return (
-            <Card>
+            <Card key={guide.title}>
               <NumberAvatar>
                 <Number>{index + 1}</Number>
               </NumberAvatar>

@@ -1,9 +1,9 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import theme from "../../theme";
 import { styled } from "@mui/material";
 import PromptSubmitButton from "../shared/PromptSubmitButton";
 
-const PromptInputContainer = styled("div")({
+const PromptInputContainer = styled("form")({
   background: theme.inputBackground,
   borderRadius: "20px",
   border: "none",
@@ -86,6 +86,7 @@ const PromptInputTextarea = styled("textarea")({
 
 function PromptInputArea(props) {
   const textareaRef = useRef(null);
+  const [prompt, setPrompt] = useState("");
 
   const handleInput = () => {
     const textarea = textareaRef.current;
@@ -95,12 +96,29 @@ function PromptInputArea(props) {
     }
   };
 
+  const handleChange = (evt) => {
+    const value = evt.target.value;
+
+    setPrompt(value);
+  };
+
   return (
-    <PromptInputContainer sx={{ margin: "40px 0 0" }}>
+    <PromptInputContainer
+      action="/"
+      method="Post"
+      onSubmit={(evt) => {
+        evt.preventDefault();
+      }}
+      sx={{ margin: "40px 0 0" }}
+    >
       <PromptInputTextarea
+        id="prompt"
         ref={textareaRef}
         onInput={handleInput}
         rows={"auto"}
+        value={prompt}
+        onChange={handleChange}
+        name="prompt"
         placeholder="I’m applying for [e.g. Frontend Developer]"
       />
 

@@ -36,7 +36,7 @@ const BrandName = styled("h1")({
   },
 });
 
-function PageHeader(props) {
+function AppHeader(props) {
   return (
     <Header>
       <BrandWrapper>
@@ -50,4 +50,4 @@ function PageHeader(props) {
   );
 }
 
-export default PageHeader;
+export default AppHeader;

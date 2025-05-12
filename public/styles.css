@@ -8,6 +8,7 @@ body {
   background-color: #000000;
   max-width: 1600px;
   padding: 79px 40px 0;
+  scroll-behavior: smooth;
 }
 
 @media (max-width: 800px) {
