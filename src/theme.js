@@ -2,6 +2,8 @@ const darkTheme = {
   // Backgrounds
   mainBackgroundColor: "#000000", // Page background
   primaryBackgroundColor: "#1e1e1e", // Section/card backgrounds
+  secondaryBackgroundColor:
+    "linear-gradient(0deg, #1e1e1e 22%, #252525 50%, #1e1e1e 68%)", // Special section
 
   // Text Colors
   highlightColor: "#FFFFFF", // Primary text (bright white)
@@ -20,6 +22,11 @@ const darkTheme = {
   buttonTextColor: "#FFFFFF", // Text on buttons
   buttonHoverBackground: "#444444", // Hovered button color
 
+  // secondary buttons
+  secondaryButtonBackground: "#FFFFFF", // Prompt Primary button color
+  secondaryButtonTextColor: "#000000", // Prompt Text on buttons
+  secondaryButtonHoverBackground: "hsl(0, 0%, 90%)", // Prompt Hovered button color
+
   // Prompt Button
   promptButtonBackground: "#FFFFFF", // Prompt Primary button color
   promptButtonTextColor: "#000000", // Prompt Text on buttons
@@ -30,6 +37,7 @@ const lightTheme = {
   // Backgrounds
   mainBackgroundColor: "#FFFFFF", // Pure white background
   primaryBackgroundColor: "#F5F5F5", // Light grey for sections/cards
+  secondaryBackgroundColor: "#F5F5F5", // Specail sections
 
   // Text Colors
   highlightColor: "#000000", // Main heading or title text (black)
@@ -47,6 +55,16 @@ const lightTheme = {
   buttonBackground: "#3F8CFF", // Same as dark theme
   buttonTextColor: "#FFFFFF", // White text on buttons
   buttonHoverBackground: "#3679DB", // Darker on hover
+
+  // secondary buttons
+  secondaryButtonBackground: "#000000", // Prompt Primary button color
+  secondaryButtonTextColor: "#FFFFFF", // Prompt Text on buttons
+  secondaryButtonHoverBackground: "hsl(0, 0%, 21.176470588235293%)", // Prompt Hovered button color
+
+  // Prompt Button
+  promptButtonBackground: "#000000", // Prompt Primary button color
+  promptButtonTextColor: "#FFFFFF", // Prompt Text on buttons
+  promptButtonHoverBackground: "hsl(0, 0%, 21.176470588235293%)", // Prompt Hovered button color
 };
 
 export default darkTheme;

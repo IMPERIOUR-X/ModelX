@@ -7,4 +7,24 @@
 body {
   background-color: #000000;
   max-width: 1600px;
+  padding: 79px 40px 0;
+}
+
+@media (max-width: 800px) {
+  body {
+    padding: 79px 30px 0;
+  }
+
+  header {
+    padding: 30px 30px 10px 0;
+  }
+}
+
+@media (max-width: 500px) {
+  body {
+    padding: 79px 20px 0;
+  }
+  header {
+    padding: 30px 20px 10px 0;
+  }
 }

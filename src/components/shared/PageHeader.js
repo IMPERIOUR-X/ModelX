@@ -1,11 +1,20 @@
 import React from "react";
 import theme from "../../theme";
 import { styled } from "@mui/material";
+import { PrimaryFilledButton } from "./Buttons";
 
 const Header = styled("header")({
   backgroundColor: theme.mainBackgroundColor,
   display: "flex",
-  padding: "30px 40px 10px",
+  padding: "30px 40px 10px 0",
+  position: "fixed",
+  top: 0,
+  width: "-webkit-fill-available",
+  zIndex: 100,
+});
+
+const BrandWrapper = styled("div")({
+  alignContent: "center",
 });
 
 const BrandName = styled("h1")({
@@ -27,47 +36,16 @@ const BrandName = styled("h1")({
   },
 });
 
-const Button = styled("button")({
-  backgroundColor: theme.buttonBackground,
-  color: theme.buttonTextColor,
-  outline: "none",
-  fontSize: "13px",
-  fontWeight: "400",
-  borderRadius: "20px",
-  border: "none",
-  marginLeft: "auto",
-  padding: "10px 24px",
-  cursor: "pointer",
-  transition: "transform 0.1s ease-in-out",
-  "&:hover": {
-    backgroundColor: theme.buttonHoverBackground,
-    outline: theme.borderColor,
-  },
-  "&:active": {
-    transform: "scale(0.9)",
-  },
-
-  "@media (max-width: 1024px)": {
-    fontSize: "13px",
-  },
-
-  "@media (max-width: 800px)": {
-    fontSize: "12px",
-  },
-
-  "@media (max-width: 400px)": {
-    fontSize: "11px",
-  },
-});
-
 function PageHeader(props) {
   return (
     <Header>
-      <div>
+      <BrandWrapper>
         <BrandName>ModelX</BrandName>
-      </div>
+      </BrandWrapper>
 
-      <Button sx={{ marginBottom: "3px" }}>Log in</Button>
+      <PrimaryFilledButton sx={{ marginBottom: "3px", marginLeft: "auto" }}>
+        Log in
+      </PrimaryFilledButton>
     </Header>
   );
 }

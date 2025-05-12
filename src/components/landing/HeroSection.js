@@ -1,7 +1,7 @@
-import React, { useRef } from "react";
+import React from "react";
 import theme from "../../theme";
 import { styled } from "@mui/material";
-import NorthIcon from "@mui/icons-material/North";
+import PromptInputArea from "./PromptInputArea";
 
 const tags = [
   "First-time Job Seeker",
@@ -10,9 +10,17 @@ const tags = [
   "Recent Graduate / Student",
 ];
 
-const HeroSectionWrapper = styled("div")({
+const HeroSectionWrapper = styled("section")({
   justifyItems: "center",
-  padding: "100px 0 0",
+  padding: "170px 0 50px",
+
+  "@media (max-width: 500px)": {
+    padding: "80px 0 0",
+  },
+
+  "@media (max-width: 330px)": {
+    padding: "60px 0 0",
+  },
 });
 
 const HeroHeader = styled("h1")({
@@ -21,6 +29,18 @@ const HeroHeader = styled("h1")({
   color: theme.highlightColor,
   width: "fit-content",
   textAlign: "center",
+
+  "@media (max-width: 1024px)": {
+    fontSize: "30px",
+  },
+
+  "@media (max-width: 800px)": {
+    fontSize: "28px",
+  },
+
+  "@media (max-width: 400px)": {
+    fontSize: "26px",
+  },
 });
 
 const HeroSubheading = styled("h1")({
@@ -28,6 +48,18 @@ const HeroSubheading = styled("h1")({
   fontWeight: "500",
   color: theme.secondaryTextColor,
   width: "fit-content",
+
+  "@media (max-width: 1024px)": {
+    fontSize: "28px",
+  },
+
+  "@media (max-width: 800px)": {
+    fontSize: "26px",
+  },
+
+  "@media (max-width: 400px)": {
+    fontSize: "24px",
+  },
 });
 
 const BagdeContainer = styled("div")({
@@ -36,60 +68,30 @@ const BagdeContainer = styled("div")({
   border: `1px solid ${theme.borderColor}`,
   width: "fit-content",
   cursor: "pointer",
+
+  "@media (max-width: 1024px)": {
+    padding: "7px 16px",
+  },
+
+  "@media (max-width: 800px)": {
+    padding: "7px 16px",
+  },
+
+  "@media (max-width: 600px)": {},
 });
 
 const BagdeText = styled("h6")({
   color: theme.secondaryTextColor,
   fontWeight: "400",
   fontSize: "11px",
-});
+  width: "fit-content",
 
-const PromptInputContainer = styled("div")({
-  background: theme.inputBackground,
-  borderRadius: "20px",
-  border: "none",
-  padding: "20px",
-  position: "relative",
-  textAlign: "end",
-  width: "800px",
-  maxWidth: "800px",
-});
-
-const PromptInputTextarea = styled("textarea")({
-  background: "transparent",
-  color: theme.primaryTextColor,
-  overflow: "hidden",
-  border: "none",
-  outline: "none",
-  resize: "none",
-  fontWeight: "500",
-  fontSize: "15px",
-  width: "-webkit-fill-available",
-  "&::placeholder": {
-    color: theme.secondaryTextColor,
-    fontWeight: "600",
-    fontSize: "15px",
-    opacity: 1,
+  "@media (max-width: 800px)": {
+    fontSize: "9px",
   },
-});
 
-const PromptSendButton = styled("button")({
-  backgroundColor: theme.promptButtonBackground,
-  color: theme.promptButtonTextColor,
-  outline: "none",
-  alignItems: "center",
-  justifyItems: "center",
-  fontWeight: "400",
-  borderRadius: "50%",
-  border: "none",
-  padding: "6px",
-  cursor: "pointer",
-  transition: "all 0.1s ease-in-out",
-  "&:hover": {
-    backgroundColor: theme.promptButtonHoverBackground,
-  },
-  "&:active": {
-    transform: "scale(0.9)",
+  "@media (max-width: 400px)": {
+    fontSize: "8px",
   },
 });
 
@@ -99,29 +101,51 @@ const TagsWrapper = styled("div")({
   gap: "8px",
   flexWrap: "wrap",
   justifyContent: "center",
-  width: "715px",
+  width: "800px",
+
+  "@media (max-width: 1024px)": {
+    width: "530px",
+  },
+
+  "@media (max-width: 600px)": {
+    width: "-webkit-fill-available",
+  },
 });
 
 const TagContainer = styled(BagdeContainer)({
   padding: "9px 20px",
+
+  "@media (max-width: 1024px)": {
+    padding: "7px 16px",
+  },
+
+  "@media (max-width: 800px)": {
+    padding: "7px 16px",
+  },
+
+  "@media (max-width: 600px)": {},
 });
 
-const TagText = styled(BagdeText)({
+const TagText = styled("p")({
   color: theme.primaryTextColor,
   fontWeight: "500",
+  fontSize: "13px",
+  width: "fit-content",
+
+  "@media (max-width: 1024px)": {
+    fontSize: "11px",
+  },
+
+  "@media (max-width: 800px)": {
+    fontSize: "9px",
+  },
+
+  "@media (max-width: 400px)": {
+    fontSize: "8px",
+  },
 });
 
 function HeroSection(props) {
-  const textareaRef = useRef(null);
-
-  const handleInput = () => {
-    const textarea = textareaRef.current;
-    if (textarea) {
-      textarea.style.height = "auto"; // Reset height
-      textarea.style.height = `${textarea.scrollHeight}px`; // Expand to fit content
-    }
-  };
-
   return (
     <HeroSectionWrapper>
       <BagdeContainer>
@@ -135,29 +159,12 @@ function HeroSection(props) {
         — powered by AI.
       </HeroSubheading>
 
-      <PromptInputContainer sx={{ margin: "40px 0 0" }}>
-        <PromptInputTextarea
-          ref={textareaRef}
-          onInput={handleInput}
-          rows={"auto"}
-          placeholder="I’m applying for [e.g. Frontend Developer]"
-        />
-
-        <PromptSendButton>
-          <NorthIcon
-            sx={{
-              color: theme.promptButtonTextColor,
-              fontSize: "20px",
-              fontWeight: 600,
-            }}
-          />
-        </PromptSendButton>
-      </PromptInputContainer>
+      <PromptInputArea />
 
       <TagsWrapper sx={{ margin: "20px" }}>
-        {tags.map((tag) => {
+        {tags.slice(0, props.windowWidth > 338 ? tags.length : 1).map((tag) => {
           return (
-            <TagContainer>
+            <TagContainer key={tag}>
               <TagText>{tag}</TagText>
             </TagContainer>
           );
