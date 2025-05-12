@@ -1,6 +1,6 @@
 import React from "react";
 
-function BuilderPage(props) {
+function PromptWorkspacePage(props) {
   return (
     <div>
       <h1>Hello world</h1>
@@ -8,4 +8,4 @@ function BuilderPage(props) {
   );
 }
 
-export default BuilderPage;
+export default PromptWorkspacePage;

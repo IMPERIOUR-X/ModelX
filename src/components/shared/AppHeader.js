@@ -1,7 +1,7 @@
 import React from "react";
 import theme from "../../theme";
 import { styled } from "@mui/material";
-import { PrimaryFilledButton } from "./Buttons";
+import { PrimaryFilledLinkButton } from "./Buttons";
 
 const Header = styled("header")({
   backgroundColor: theme.mainBackgroundColor,
@@ -42,10 +42,12 @@ function AppHeader(props) {
       <BrandWrapper>
         <BrandName>ModelX</BrandName>
       </BrandWrapper>
-
-      <PrimaryFilledButton sx={{ marginBottom: "3px", marginLeft: "auto" }}>
+      <PrimaryFilledLinkButton
+        to="/auth"
+        sx={{ marginBottom: "3px", marginLeft: "auto" }}
+      >
         Log in
-      </PrimaryFilledButton>
+      </PrimaryFilledLinkButton>
     </Header>
   );
 }

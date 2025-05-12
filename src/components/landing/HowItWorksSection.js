@@ -7,6 +7,7 @@ import {
   CardContent,
 } from "../shared/Typograhpy";
 import { styled } from "@mui/material";
+import { SecondaryBigFilledLinkButton } from "../shared/Buttons";
 
 const guides = [
   {
@@ -110,39 +111,6 @@ const ButtonWrapper = styled("div")({
   margin: "50px 0 10px",
 });
 
-const Button = styled("button")({
-  backgroundColor: theme.secondaryButtonBackground,
-  color: theme.secondaryButtonTextColor,
-  outline: "none",
-  fontSize: "16px",
-  fontWeight: "500",
-  borderRadius: "20px",
-  border: "none",
-  padding: "11px 26px",
-  cursor: "pointer",
-  width: "fit-content",
-  transition: "transform 0.1s ease-in-out",
-  "&:hover": {
-    backgroundColor: theme.secondaryButtonHoverBackground,
-    outline: theme.borderColor,
-  },
-  "&:active": {
-    transform: "scale(0.9)",
-  },
-
-  "@media (max-width: 1024px)": {
-    fontSize: "15px",
-  },
-
-  "@media (max-width: 800px)": {
-    fontSize: "13px",
-  },
-
-  "@media (max-width: 400px)": {
-    fontSize: "12px",
-  },
-});
-
 function HowItWorksSection(props) {
   return (
     <SectionWrapper>
@@ -171,7 +139,9 @@ function HowItWorksSection(props) {
       </CardsWrapper>
 
       <ButtonWrapper>
-        <Button>Try it now</Button>
+        <SecondaryBigFilledLinkButton to="/prompt-workspace">
+          Try it now
+        </SecondaryBigFilledLinkButton>
       </ButtonWrapper>
     </SectionWrapper>
   );

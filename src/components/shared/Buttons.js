@@ -1,5 +1,6 @@
 import theme from "../../theme";
 import { styled } from "@mui/material";
+import { Link } from "react-router-dom";
 
 ////////////////////////////////// Button styling section /////////////
 
@@ -15,6 +16,7 @@ const buttonStyles = {
   fontWeight: "400",
   borderRadius: "20px",
   border: "none",
+  textDecoration: "none",
   padding: "10px 24px",
   cursor: "pointer",
   transition: "transform 0.1s ease-in-out",
@@ -40,6 +42,7 @@ const bigButtonStyles = {
   fontWeight: "500",
   borderRadius: "20px",
   border: "none",
+  textDecoration: "none",
   padding: "11px 26px",
   cursor: "pointer",
   width: "fit-content",
@@ -79,8 +82,38 @@ const PrimaryFilledButton = styled("button")({
   ...buttonResponsiveness,
 });
 
+// Normal Sized Link Button
+const PrimaryFilledLinkButton = styled(Link)({
+  ...buttonStyles,
+  backgroundColor: theme.buttonBackground,
+  color: theme.buttonTextColor,
+
+  "&:hover": {
+    backgroundColor: theme.buttonHoverBackground,
+    outline: theme.borderColor,
+  },
+
+  ...buttonActiveState,
+  ...buttonResponsiveness,
+});
+
 // Big Sized Button
 const PrimaryBigFilledButton = styled("button")({
+  ...bigButtonStyles,
+  backgroundColor: theme.buttonBackground,
+  color: theme.buttonTextColor,
+
+  "&:hover": {
+    backgroundColor: theme.buttonHoverBackground,
+    outline: theme.borderColor,
+  },
+
+  ...buttonActiveState,
+  ...bigButtonResponsiveness,
+});
+
+// Big Sized Link Button
+const PrimaryBigFilledLinkButton = styled(Link)({
   ...bigButtonStyles,
   backgroundColor: theme.buttonBackground,
   color: theme.buttonTextColor,
@@ -111,6 +144,21 @@ const SecondaryFilledButton = styled("button")({
   ...buttonResponsiveness,
 });
 
+// Normal Sized Link Button
+const SecondaryFilledLinkButton = styled(Link)({
+  ...buttonStyles,
+  backgroundColor: theme.buttonBackground,
+  color: theme.buttonTextColor,
+
+  "&:hover": {
+    backgroundColor: theme.buttonHoverBackground,
+    outline: theme.borderColor,
+  },
+
+  ...buttonActiveState,
+  ...buttonResponsiveness,
+});
+
 // Big Sized Button
 const SecondaryBigFilledButton = styled("button")({
   ...bigButtonStyles,
@@ -127,9 +175,32 @@ const SecondaryBigFilledButton = styled("button")({
   ...bigButtonResponsiveness,
 });
 
+// Big Sized Link Button
+const SecondaryBigFilledLinkButton = styled(Link)({
+  ...bigButtonStyles,
+  backgroundColor: theme.secondaryButtonBackground,
+  color: theme.secondaryButtonTextColor,
+
+  "&:hover": {
+    backgroundColor: theme.secondaryButtonHoverBackground,
+    outline: theme.borderColor,
+  },
+
+  ...buttonActiveState,
+
+  ...bigButtonResponsiveness,
+});
+
 export {
+  // Normal Buttons
   PrimaryFilledButton,
   PrimaryBigFilledButton,
   SecondaryFilledButton,
   SecondaryBigFilledButton,
+
+  // Link Buttons
+  PrimaryFilledLinkButton,
+  PrimaryBigFilledLinkButton,
+  SecondaryFilledLinkButton,
+  SecondaryBigFilledLinkButton,
 };

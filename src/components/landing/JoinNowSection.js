@@ -1,7 +1,10 @@
 import React from "react";
 import theme from "../../theme";
 import { styled } from "@mui/material";
-import { PrimaryBigFilledButton } from "../shared/Buttons";
+import {
+  PrimaryBigFilledButton,
+  PrimaryBigFilledLinkButton,
+} from "../shared/Buttons";
 
 const SectionWrapper = styled("section")({
   justifyItems: "center",
@@ -46,7 +49,9 @@ function JoinNowSection(props) {
   return (
     <SectionWrapper>
       <BigText>Join hundred of millions of user and try ModelX today.</BigText>
-      <PrimaryBigFilledButton>Join Now</PrimaryBigFilledButton>
+      <PrimaryBigFilledLinkButton to="/auth">
+        Join Now
+      </PrimaryBigFilledLinkButton>
     </SectionWrapper>
   );
 }
