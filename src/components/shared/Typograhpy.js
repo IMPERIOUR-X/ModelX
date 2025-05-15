@@ -1,6 +1,45 @@
 import theme from "../../theme";
 import { styled } from "@mui/material";
 
+const BigHeader = styled("h1")({
+  fontSize: "32px",
+  fontWeight: "600",
+  color: theme.highlightColor,
+  width: "fit-content",
+  textAlign: "center",
+
+  "@media (max-width: 1024px)": {
+    fontSize: "30px",
+  },
+
+  "@media (max-width: 800px)": {
+    fontSize: "28px",
+  },
+
+  "@media (max-width: 400px)": {
+    fontSize: "26px",
+  },
+});
+
+const BigSubheading = styled("h1")({
+  fontSize: "30px",
+  fontWeight: "500",
+  color: theme.secondaryTextColor,
+  width: "fit-content",
+
+  "@media (max-width: 1024px)": {
+    fontSize: "28px",
+  },
+
+  "@media (max-width: 800px)": {
+    fontSize: "26px",
+  },
+
+  "@media (max-width: 400px)": {
+    fontSize: "24px",
+  },
+});
+
 const SectionHeading = styled("h2")({
   color: theme.highlightColor,
   width: "fit-content",
@@ -104,4 +143,11 @@ const CardContent = styled("p")({
   },
 });
 
-export { SectionHeading, SectionSubheading, CardTitle, CardContent };
+export {
+  BigHeader,
+  BigSubheading,
+  SectionHeading,
+  SectionSubheading,
+  CardTitle,
+  CardContent,
+};

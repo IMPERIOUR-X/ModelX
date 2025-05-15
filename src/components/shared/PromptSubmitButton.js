@@ -7,12 +7,14 @@ const Button = styled("button")({
   backgroundColor: theme.promptButtonBackground,
   color: theme.promptButtonTextColor,
   outline: "none",
-  alignItems: "center",
-  justifyItems: "center",
   fontWeight: "400",
   borderRadius: "50%",
   border: "none",
-  padding: "7px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  height: 36,
+  width: 36,
   cursor: "pointer",
   transition: "all 0.1s ease-in-out",
 
@@ -23,14 +25,6 @@ const Button = styled("button")({
   "&:active": {
     transform: "scale(0.9)",
   },
-
-  "@media (max-width: 1024px)": {},
-
-  "@media (max-width: 800px)": {
-    padding: "5px",
-  },
-
-  "@media (max-width: 400px)": {},
 });
 
 const Icon = styled(NorthIcon)({

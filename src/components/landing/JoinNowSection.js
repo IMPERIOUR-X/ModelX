@@ -1,10 +1,7 @@
 import React from "react";
 import theme from "../../theme";
 import { styled } from "@mui/material";
-import {
-  PrimaryBigFilledButton,
-  PrimaryBigFilledLinkButton,
-} from "../shared/Buttons";
+import { PrimaryBigFilledLinkButton } from "../shared/Buttons";
 
 const SectionWrapper = styled("section")({
   justifyItems: "center",

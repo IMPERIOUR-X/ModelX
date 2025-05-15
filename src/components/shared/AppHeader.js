@@ -2,11 +2,11 @@ import React from "react";
 import theme from "../../theme";
 import { styled } from "@mui/material";
 import { PrimaryFilledLinkButton } from "./Buttons";
+import CustomAvatar from "./CustomAvatar";
 
 const Header = styled("header")({
   backgroundColor: theme.mainBackgroundColor,
   display: "flex",
-  padding: "30px 40px 10px 0",
   position: "fixed",
   top: 0,
   width: "-webkit-fill-available",
@@ -22,6 +22,7 @@ const BrandName = styled("h1")({
   fontWeight: "500",
   fontSize: "26px",
   width: "fit-content",
+  cursor: "pointer",
 
   "@media (max-width: 1024px)": {
     fontSize: "26px",
@@ -36,18 +37,31 @@ const BrandName = styled("h1")({
   },
 });
 
-function AppHeader(props) {
+const AvatarWrapper = styled("div")({
+  width: "fit-content",
+  marginBottom: "3px",
+  marginLeft: "auto",
+});
+
+function AppHeader({ authenticated }) {
   return (
     <Header>
       <BrandWrapper>
         <BrandName>ModelX</BrandName>
       </BrandWrapper>
-      <PrimaryFilledLinkButton
-        to="/auth"
-        sx={{ marginBottom: "3px", marginLeft: "auto" }}
-      >
-        Log in
-      </PrimaryFilledLinkButton>
+
+      {authenticated ? (
+        <AvatarWrapper>
+          <CustomAvatar name="Unknown" />
+        </AvatarWrapper>
+      ) : (
+        <PrimaryFilledLinkButton
+          to="/auth"
+          sx={{ marginBottom: "3px", marginLeft: "auto" }}
+        >
+          Log in
+        </PrimaryFilledLinkButton>
+      )}
     </Header>
   );
 }

@@ -2,6 +2,8 @@ const darkTheme = {
   // Backgrounds
   mainBackgroundColor: "#000000", // Page background
   primaryBackgroundColor: "#1e1e1e", // Section/card backgrounds
+  primaryHoverBackgroundColor: "#2c2c2c", // Section/card backgrounds
+  primaryActiveBackgroundColor: "#3a3a3a", // Section/card backgrounds
   secondaryBackgroundColor:
     "linear-gradient(0deg, #1e1e1e 22%, #252525 50%, #1e1e1e 68%)", // Special section
 
@@ -11,10 +13,10 @@ const darkTheme = {
   secondaryTextColor: "#5E5F64", // Placeholder or less important text
 
   // Accent & Interactive
-  accentColor: "#3F8CFF", // Buttons, links, highlights
-  accentHoverColor: "#3679DB", // Accent on hover
+  accentColor: "#b1b1b1", // Buttons, links, highlights
+  accentHoverColor: "#FFFFFF", // Accent on hover
   borderColor: "#5c5c5c", // Card/input/chat borders
-  inputBackground: "#2A2A2A", // Input field background
+  inputBackground: "#202020", // Input field background
   inputPlaceholderColor: "#6C6C6C", // Placeholder text
 
   // Buttons
@@ -37,6 +39,8 @@ const lightTheme = {
   // Backgrounds
   mainBackgroundColor: "#FFFFFF", // Pure white background
   primaryBackgroundColor: "#F5F5F5", // Light grey for sections/cards
+  primaryHoverBackgroundColor: "#ebebeb", // Light grey for sections/cards
+  primaryActiveBackgroundColor: "#dddddd", // Light grey for sections/cards
   secondaryBackgroundColor: "#F5F5F5", // Specail sections
 
   // Text Colors

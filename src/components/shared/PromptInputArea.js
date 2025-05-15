@@ -1,17 +1,18 @@
 import React, { useRef, useState } from "react";
 import theme from "../../theme";
 import { styled } from "@mui/material";
-import PromptSubmitButton from "../shared/PromptSubmitButton";
+import PromptSubmitButton from "./PromptSubmitButton";
+import AddIcon from "@mui/icons-material/Add";
 
 const PromptInputContainer = styled("form")({
   background: theme.inputBackground,
-  borderRadius: "20px",
-  border: "none",
+  borderRadius: 20,
+  border: `1px solid ${theme.borderColor}`,
   padding: "20px",
   position: "relative",
-  textAlign: "end",
   width: "800px",
   maxWidth: "800px",
+  cursor: "text",
 
   "@media (max-width: 1024px)": {
     width: "650px",
@@ -21,20 +22,10 @@ const PromptInputContainer = styled("form")({
     width: "500px",
   },
 
-  "@media (max-width: 650px)": {
-    width: "350px",
-  },
-
-  "@media (max-width: 454px)": {
-    width: "300px",
-  },
-
-  "@media (max-width: 385px)": {
-    width: "250px",
-  },
-
-  "@media (max-width: 330px)": {
-    width: "200px",
+  "@media (max-width: 580px)": {
+    width: "-webkit-fill-available",
+    margin: "0 10px 0",
+    padding: 15,
   },
 });
 
@@ -84,6 +75,50 @@ const PromptInputTextarea = styled("textarea")({
   },
 });
 
+const BottomItemsWrapper = styled("div")({
+  width: "-webkit-fill-available",
+  display: "flex",
+  margin: "7px 0 0",
+  justifyContent: "space-between",
+});
+
+const ImportButton = styled("div")({
+  color: theme.highlightColor,
+  outline: "none",
+  fontWeight: "400",
+  borderRadius: "50%",
+  border: `1px solid ${theme.borderColor}`,
+  cursor: "pointer",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  height: 36,
+  width: 36,
+  transition: "all 0.1s ease-in-out",
+
+  "&:hover": {
+    backgroundColor: theme.promptButtonBackground,
+    color: theme.mainBackgroundColor,
+  },
+
+  "&:active": {
+    transform: "scale(0.9)",
+  },
+});
+
+const Icon = styled(AddIcon)({
+  fontSize: "20px",
+  fontWeight: 900,
+
+  "@media (max-width: 800px)": {
+    fontSize: "18px",
+  },
+
+  "@media (max-width: 400px)": {
+    fontSize: "15px",
+  },
+});
+
 function PromptInputArea(props) {
   const textareaRef = useRef(null);
   const [prompt, setPrompt] = useState("");
@@ -119,10 +154,15 @@ function PromptInputArea(props) {
         value={prompt}
         onChange={handleChange}
         name="prompt"
-        placeholder="I’m applying for [e.g. Frontend Developer]"
+        placeholder="Type your prompt here..."
       />
 
-      <PromptSubmitButton />
+      <BottomItemsWrapper>
+        <ImportButton>
+          <Icon />
+        </ImportButton>
+        <PromptSubmitButton />
+      </BottomItemsWrapper>
     </PromptInputContainer>
   );
 }

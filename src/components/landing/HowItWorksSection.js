@@ -60,6 +60,11 @@ const Card = styled("div")({
   padding: "18px 20px",
   justifyItems: "center",
   width: "244px",
+  transition: " transform 0.2s ease",
+
+  "&:hover": {
+    transform: "scale(1.03)",
+  },
 });
 
 const NumberAvatar = styled("div")({
@@ -139,7 +144,7 @@ function HowItWorksSection(props) {
       </CardsWrapper>
 
       <ButtonWrapper>
-        <SecondaryBigFilledLinkButton to="/prompt-workspace">
+        <SecondaryBigFilledLinkButton to="/home">
           Try it now
         </SecondaryBigFilledLinkButton>
       </ButtonWrapper>

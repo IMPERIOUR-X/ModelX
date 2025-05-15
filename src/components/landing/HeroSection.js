@@ -1,7 +1,8 @@
 import React from "react";
 import theme from "../../theme";
 import { styled } from "@mui/material";
-import PromptInputArea from "./PromptInputArea";
+import HeroSectionPromptInputArea from "./HeroSectionPromptInputArea";
+import { BigHeader, BigSubheading } from "../shared/Typograhpy";
 
 const tags = [
   "First-time Job Seeker",
@@ -20,45 +21,6 @@ const HeroSectionWrapper = styled("section")({
 
   "@media (max-width: 330px)": {
     padding: "60px 0 0",
-  },
-});
-
-const HeroHeader = styled("h1")({
-  fontSize: "32px",
-  fontWeight: "600",
-  color: theme.highlightColor,
-  width: "fit-content",
-  textAlign: "center",
-
-  "@media (max-width: 1024px)": {
-    fontSize: "30px",
-  },
-
-  "@media (max-width: 800px)": {
-    fontSize: "28px",
-  },
-
-  "@media (max-width: 400px)": {
-    fontSize: "26px",
-  },
-});
-
-const HeroSubheading = styled("h1")({
-  fontSize: "30px",
-  fontWeight: "500",
-  color: theme.secondaryTextColor,
-  width: "fit-content",
-
-  "@media (max-width: 1024px)": {
-    fontSize: "28px",
-  },
-
-  "@media (max-width: 800px)": {
-    fontSize: "26px",
-  },
-
-  "@media (max-width: 400px)": {
-    fontSize: "24px",
   },
 });
 
@@ -114,6 +76,16 @@ const TagsWrapper = styled("div")({
 
 const TagContainer = styled(BagdeContainer)({
   padding: "9px 20px",
+  transition: " transform 0.2s ease",
+
+  "&:hover": {
+    transform: "scale(1.03)",
+  },
+
+  "&:active": {
+    transform: "scale(0.96)",
+    backgroundColor: theme.primaryActiveBackgroundColor,
+  },
 
   "@media (max-width: 1024px)": {
     padding: "7px 16px",
@@ -152,14 +124,12 @@ function HeroSection(props) {
         <BagdeText>#1 AI Resume Builder for job seekers</BagdeText>
       </BagdeContainer>
 
-      <HeroHeader sx={{ margin: "20px 0 0" }}>
+      <BigHeader sx={{ margin: "20px 0 0" }}>
         Create a recruiter-ready resume in minutes
-      </HeroHeader>
-      <HeroSubheading sx={{ margin: "7px 0 0" }}>
-        — powered by AI.
-      </HeroSubheading>
+      </BigHeader>
+      <BigSubheading sx={{ margin: "7px 0 0" }}>— powered by AI.</BigSubheading>
 
-      <PromptInputArea />
+      <HeroSectionPromptInputArea />
 
       <TagsWrapper sx={{ margin: "20px" }}>
         {tags.slice(0, props.windowWidth > 338 ? tags.length : 1).map((tag) => {

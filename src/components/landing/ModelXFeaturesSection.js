@@ -95,6 +95,11 @@ const Card = styled("div")({
   padding: "18px 20px",
   justifyItems: "start",
   width: "340px",
+  transition: " transform 0.2s ease",
+
+  "&:hover": {
+    transform: "scale(1.03)",
+  },
 
   "@media (max-width: 1343px)": {
     width: "fit-content",

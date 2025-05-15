@@ -19,7 +19,7 @@ const buttonStyles = {
   textDecoration: "none",
   padding: "10px 24px",
   cursor: "pointer",
-  transition: "transform 0.1s ease-in-out",
+  transition: "all 0.1s ease-in-out",
 };
 
 const buttonResponsiveness = {
@@ -46,7 +46,7 @@ const bigButtonStyles = {
   padding: "11px 26px",
   cursor: "pointer",
   width: "fit-content",
-  transition: "transform 0.1s ease-in-out",
+  transition: "all 0.1s ease-in-out",
 };
 
 const bigButtonResponsiveness = {
@@ -132,12 +132,11 @@ const PrimaryBigFilledLinkButton = styled(Link)({
 // Normal Sized Button
 const SecondaryFilledButton = styled("button")({
   ...buttonStyles,
-  backgroundColor: theme.buttonBackground,
-  color: theme.buttonTextColor,
+  backgroundColor: theme.secondaryButtonBackground,
+  color: theme.secondaryButtonTextColor,
 
   "&:hover": {
-    backgroundColor: theme.buttonHoverBackground,
-    outline: theme.borderColor,
+    backgroundColor: theme.secondaryButtonHoverBackground,
   },
 
   ...buttonActiveState,
