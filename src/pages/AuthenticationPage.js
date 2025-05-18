@@ -1,48 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import theme from "../theme";
 import { BigHeader, SectionSubheading } from "../components/shared/Typograhpy";
 import { styled } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import OptionDivider from "../components/Authentication/OptionDivider";
 import { PrimaryFilledButton } from "../components/shared/Buttons";
-
-const PageWrapper = styled("main")({
-  backgroundColor: theme.mainBackgroundColor,
-  justifyItems: "center",
-  padding: "30px 0 0 ",
-});
-
-const HeadingWrapper = styled("div")({
-  justifyItems: "center",
-});
-
-const MainContentWrapper = styled("div")({
-  width: "-webkit-fill-available",
-  maxWidth: "444px",
-  justifyItems: "center",
-});
-
-const Form = styled("form")({
-  width: "-webkit-fill-available",
-  padding: "20px 0",
-});
-
-const TextInput = styled("input")({
-  color: theme.primaryTextColor,
-  background: "transparent",
-  border: `1px solid ${theme.borderColor}`,
-  borderRadius: 10,
-  padding: 20,
-  width: "-webkit-fill-available",
-  outline: "none",
-
-  "&::placeholder": {
-    color: theme.primaryTextColor,
-    fontWeight: "400",
-    fontSize: "13px",
-    opacity: 1,
-  },
-});
+import {
+  PageWrapper,
+  HeadingWrapper,
+  MainContentWrapper,
+  Form,
+  TextInput,
+  FormText,
+  SubmitButton,
+  GoogleLink,
+} from "../components/Authentication/Components";
+import LoadingOverlay from "../components/shared/LoadingOverlay";
 
 const FormLink = styled(Link)({
   textDecoration: "none",
@@ -56,88 +29,81 @@ const FormLink = styled(Link)({
   },
 });
 
-const FormText = styled("p")({
-  textDecoration: "none",
-  color: theme.primaryTextColor,
-  fontSize: 13,
-  fontWeight: 600,
-  width: "fit-content",
-});
-
-const SubmitButton = styled("button")({
-  backgroundColor: theme.buttonBackground,
-  color: theme.buttonTextColor,
-  border: "none",
-  padding: "20px 0",
-  width: "-webkit-fill-available",
-  fontSize: 18,
-  fontWeight: 600,
-  borderRadius: 10,
-  transition: "all 0.1s ease-in-out",
-
-  "&:hover": {
-    backgroundColor: theme.buttonHoverBackground,
-  },
-
-  "&:active": {
-    transform: "scale(0.9)",
-  },
-
-  "@media (max-width: 800px)": {
-    fontSize: 16,
-  },
-
-  "@media (max-width: 400px)": {
-    fontSize: 14,
-  },
-});
-
-const GoogleLink = styled(Link)({
-  color: theme.primaryTextColor,
-  background: "transparent",
-  border: `1px solid ${theme.borderColor}`,
-  borderRadius: 10,
-  padding: 20,
-  width: "-webkit-fill-available",
-  fontSize: 16,
-  fontWeight: 600,
-  display: "block",
-  textDecoration: "none",
-  textAlign: "center",
-  margin: "40px 0 20px",
-  transition: "all 0.1s ease-in-out",
-
-  "&:hover": {
-    transform: "scale(1.03)",
-  },
-
-  "&:active": {
-    transform: "scale(0.9)",
-  },
-});
-
 function AuthenticationPage(props) {
+  const [loginDetails, setLoginDetails] = useState({});
+  const [createAccount, setCreateAccount] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
+
+  function handleChange(evt) {
+    const { name, value } = evt.target;
+
+    setLoginDetails((prevs) => {
+      return { ...prevs, [name]: value };
+    });
+  }
+
+  function handleClick() {
+    setCreateAccount((prevs) => !prevs);
+  }
+
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+      navigate("/home");
+    }, 5000);
+  }
+
   return (
     <PageWrapper>
+      <LoadingOverlay isLoading={loading} />
+
       <HeadingWrapper>
-        <BigHeader sx={{ marginBottom: "8px" }}>Login</BigHeader>
-        <SectionSubheading>Welcome back!, Enter your details</SectionSubheading>
+        <BigHeader sx={{ marginBottom: "8px" }}>
+          {createAccount ? "Sign up" : "Login"}
+        </BigHeader>
+        <SectionSubheading>
+          {createAccount
+            ? "Create a free Modelx account"
+            : "Welcome back!, Enter your details"}
+        </SectionSubheading>
       </HeadingWrapper>
 
       <MainContentWrapper>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <TextInput
             sx={{ margin: "0 0 20px" }}
             placeholder="Email"
             type="email"
+            name="email"
+            onChange={handleChange}
+            value={loginDetails.email}
+            required
           />
           <TextInput
             sx={{ margin: "0 0 6px" }}
             placeholder="Password"
             type="password"
+            name="password"
+            onChange={handleChange}
+            value={loginDetails.password}
+            minLength={8}
+            required
           />
-          <FormLink to="/forgotten-password">forgotten password?</FormLink>
-          <SubmitButton sx={{ margin: "20px 0 20px" }}>Sign in</SubmitButton>
+          <FormLink
+            to={
+              createAccount ? "/modelx-privacy_policy" : "/forgotten-password"
+            }
+          >
+            {createAccount ? "Privacy Policy" : "forgotten password?"}
+          </FormLink>
+          <SubmitButton sx={{ margin: "20px 0 20px" }}>
+            {createAccount ? "Continue" : "Log in"}
+          </SubmitButton>
         </Form>
 
         <OptionDivider />
@@ -145,10 +111,15 @@ function AuthenticationPage(props) {
         <GoogleLink to="google-oauthentication_modelx">
           Continue with Google
         </GoogleLink>
-        <FormText>Create an account</FormText>
+        <FormText>
+          {createAccount ? "Have an account" : "Create an account"}
+        </FormText>
 
-        <PrimaryFilledButton sx={{ margin: "20px 0 20px" }}>
-          Sign up
+        <PrimaryFilledButton
+          sx={{ margin: "20px 0 20px" }}
+          onClick={handleClick}
+        >
+          {createAccount ? "Sign in" : "Sign up"}
         </PrimaryFilledButton>
       </MainContentWrapper>
     </PageWrapper>

@@ -144,7 +144,7 @@ function HowItWorksSection(props) {
       </CardsWrapper>
 
       <ButtonWrapper>
-        <SecondaryBigFilledLinkButton to="/home">
+        <SecondaryBigFilledLinkButton to="/auth">
           Try it now
         </SecondaryBigFilledLinkButton>
       </ButtonWrapper>

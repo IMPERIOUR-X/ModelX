@@ -9,13 +9,17 @@ import SavedResumesPage from "../pages/SavedResumesPage";
 import TemplatesPage from "../pages/TemplatesPage";
 import SettingsPage from "../pages/SettingsPage";
 import AuthenticationPage from "../pages/AuthenticationPage";
+import ForgottenPasswordPage from "../pages/ForgottenPasswordPage";
+import ErrorPage from "../pages/ErrorPage";
 
 const AppRouter = () => {
   return (
     <Router>
       <Routes>
+        <Route path="*" element={<ErrorPage />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/auth" element={<AuthenticationPage />} />
+        <Route path="/forgotten-password" element={<ForgottenPasswordPage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/prompt-workspace" element={<PromptWorkspacePage />} />
         <Route path="/saved" element={<SavedResumesPage />} />
