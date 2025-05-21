@@ -16,6 +16,7 @@ import {
   SubmitButton,
   GoogleLink,
 } from "../components/Authentication/Components";
+import LoadingOverlay from "../components/shared/LoadingOverlay";
 
 const FeedBackMessageWrapper = styled("div")({
   background: "transparent",
@@ -50,6 +51,7 @@ const FeedBackButtonContainer = styled("div")({
 
 function AuthenticationPage(props) {
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [infoSubmitted, setInfoSubmitted] = useState(false);
 
@@ -60,11 +62,17 @@ function AuthenticationPage(props) {
   }
 
   function handleFeedback() {
-    setInfoSubmitted((prevs) => !prevs);
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+      setInfoSubmitted((prevs) => !prevs);
+    }, 500);
   }
 
   return (
     <PageWrapper>
+      <LoadingOverlay isLoading={loading} />
       <HeadingWrapper>
         <BigHeader sx={{ marginBottom: "8px" }}>Forgotten Password</BigHeader>
         <SectionSubheading>

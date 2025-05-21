@@ -76,7 +76,7 @@ const NavButton = styled("button")({
   },
 });
 
-function ErrorPage(props) {
+function ErrorPage({ errorCode, errorBadMessage, errorGoodMessage }) {
   const navigate = useNavigate();
 
   return (
@@ -85,7 +85,11 @@ function ErrorPage(props) {
         <ErrorCode>Error code: 500</ErrorCode>
         <ErrorBadMessage>Ooops, Server still under development</ErrorBadMessage>
         <ErrorGoodMessage>
-          Prosper is still work on the backend servers please stay toned
+          If you are seeing this you may be trying to authenticate with google
+          or trying to access an unauthorize page
+        </ErrorGoodMessage>
+        <ErrorGoodMessage>
+          Google authenticate isnt available for now!
         </ErrorGoodMessage>
 
         <NavButton onClick={() => navigate("/auth")}>Go Back</NavButton>

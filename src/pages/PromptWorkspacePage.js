@@ -168,7 +168,7 @@ function PromptWorkspacePage(props) {
     // Simulate system response
     setTimeout(() => {
       const message =
-        prompt === "chats --version" || "chats --version "
+        prompt === "chats --version" || prompt === "chats --version "
           ? "App version: ModelX — Alpha Preview v0.1.0 (Under Development)"
           : "⚠️ This feature is still under development. Soon you'll be able to generate fully customized resumes by just typing your prompt!";
 

@@ -123,7 +123,7 @@ function QuickStarterSection() {
   }
 
   const handleClick = async () => {
-    const prompt = promptTextRef.current.innerText;
+    const prompt = promptTextRef.current.id;
     const resumeName = generateResumeName(prompt);
     const resumeId = generateResumeId();
 
@@ -157,6 +157,7 @@ function QuickStarterSection() {
       {starterItems.map((value, index) => (
         <QuickStarter
           ref={promptTextRef}
+          id={value}
           key={index}
           onMouseEnter={handleHover}
           onMouseLeave={handleLeave}
