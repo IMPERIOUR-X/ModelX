@@ -41,11 +41,19 @@ const Icon = styled(NorthIcon)({
   },
 });
 
-function PromptSubmitButton(props) {
+function PromptSubmitButton({ disabled, isPromptNull }) {
   return (
-    <Button>
-      <Icon />
-    </Button>
+    <>
+      {isPromptNull ? (
+        <Button disabled={true} sx={{ opacity: 0.4 }}>
+          <Icon />
+        </Button>
+      ) : (
+        <Button disabled={disabled} sx={{ opacity: disabled ? 0.4 : 1 }}>
+          <Icon />
+        </Button>
+      )}
+    </>
   );
 }
 

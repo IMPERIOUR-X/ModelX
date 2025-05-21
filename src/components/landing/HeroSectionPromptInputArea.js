@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import theme from "../../theme";
 import { styled } from "@mui/material";
 import PromptSubmitButton from "../shared/PromptSubmitButton";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const PromptInputContainer = styled("form")({
   background: theme.inputBackground,
@@ -90,6 +91,8 @@ function HeroSectionPromptInputArea(props) {
   const textareaRef = useRef(null);
   const [prompt, setPrompt] = useState("");
 
+  const navigate = useNavigate();
+
   const handleInput = () => {
     const textarea = textareaRef.current;
     if (textarea) {
@@ -107,9 +110,10 @@ function HeroSectionPromptInputArea(props) {
   return (
     <PromptInputContainer
       action="/"
-      method="Post"
+      method="post"
       onSubmit={(evt) => {
         evt.preventDefault();
+        navigate("/home");
       }}
       sx={{ margin: "40px 0 0" }}
     >

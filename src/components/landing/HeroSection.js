@@ -3,6 +3,7 @@ import theme from "../../theme";
 import { styled } from "@mui/material";
 import HeroSectionPromptInputArea from "./HeroSectionPromptInputArea";
 import { BigHeader, BigSubheading } from "../shared/Typograhpy";
+import { useNavigate } from "react-router-dom";
 
 const tags = [
   "First-time Job Seeker",
@@ -118,6 +119,12 @@ const TagText = styled("p")({
 });
 
 function HeroSection(props) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/home");
+  };
+
   return (
     <HeroSectionWrapper>
       <BagdeContainer>
@@ -134,12 +141,12 @@ function HeroSection(props) {
       <TagsWrapper sx={{ margin: "20px" }}>
         {tags.slice(0, props.windowWidth > 338 ? tags.length : 1).map((tag) => {
           return (
-            <TagContainer key={tag}>
+            <TagContainer key={tag} onClick={handleClick}>
               <TagText>{tag}</TagText>
             </TagContainer>
           );
         })}
-        <TagContainer>
+        <TagContainer onClick={handleClick}>
           <TagText>More...</TagText>
         </TagContainer>
       </TagsWrapper>

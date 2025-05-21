@@ -25,18 +25,10 @@ const HeadingWrapper = styled("div")({
   },
 });
 
-const PromptInputAreaWrapper = styled("div")({
-  width: "-webkit-fill-available",
-  position: "fixed",
-  left: 0,
-  bottom: 8,
-  justifyItems: "center",
-});
-
 function HomePage() {
   return (
     <HomePageWrapper>
-      <AppHeader authenticated={true} />
+      <AppHeader />
 
       <HeadingWrapper>
         <SectionHeading>What role are you aiming for today?</SectionHeading>
@@ -48,9 +40,7 @@ function HomePage() {
 
       <QuickStarterSection />
 
-      <PromptInputAreaWrapper>
-        <PromptInputArea />
-      </PromptInputAreaWrapper>
+      <PromptInputArea isNewChat={true} />
     </HomePageWrapper>
   );
 }

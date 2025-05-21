@@ -16,6 +16,7 @@ import {
   GoogleLink,
 } from "../components/Authentication/Components";
 import LoadingOverlay from "../components/shared/LoadingOverlay";
+import { useAuth } from "../context/AuthContext";
 
 const FormLink = styled(Link)({
   textDecoration: "none",
@@ -30,33 +31,35 @@ const FormLink = styled(Link)({
 });
 
 function AuthenticationPage(props) {
-  const [loginDetails, setLoginDetails] = useState({});
+  const [loginDetails, setLoginDetails] = useState({ email: "", password: "" });
   const [createAccount, setCreateAccount] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
-  function handleChange(evt) {
+  const { login } = useAuth();
+
+  const handleChange = (evt) => {
     const { name, value } = evt.target;
 
     setLoginDetails((prevs) => {
       return { ...prevs, [name]: value };
     });
-  }
+  };
 
-  function handleClick() {
-    setCreateAccount((prevs) => !prevs);
-  }
+  const handleClick = () => setCreateAccount((prevs) => !prevs);
 
-  function handleSubmit(evt) {
+  const handleSubmit = (evt) => {
     evt.preventDefault();
-    setLoading(true);
+    setLoading(true); // start loading animation
 
     setTimeout(() => {
-      setLoading(false);
-      navigate("/home");
+      // setted a timer to authenticate the user
+      login(loginDetails); // saved user info
+      setLoading(false); // stop loading animation
+      navigate("/home"); // redirect the user to the home page
     }, 5000);
-  }
+  };
 
   return (
     <PageWrapper>

@@ -16,6 +16,14 @@ const darkTheme = {
   successTextColor: "#2ECC71", // for feedback response
   dangerTextColor: "#E74C3C", // for feedback response
 
+  // Chat bubbles colors
+  userChatBubbleBackgroundColor: "#1e1e1e", // Chat bubble background
+  userChatBubbleBorderColor: "#5c5c5c", // Chat bubble border
+  userChatBubbleTextColor: "#E0E0E0", // chat bubble text
+  systemChatBubbleBackgroundColor: "#262626 ", // Chat bubble background
+  systemChatBubbleBorderColor: "#5c5c5c", // Chat bubble border
+  systemChatBubbleTextColor: "#F5F5F5", // Chat bubble border
+
   // Accent & Interactive
   accentColor: "#b1b1b1", // Buttons, links, highlights
   accentHoverColor: "#FFFFFF", // Accent on hover
@@ -59,6 +67,14 @@ const lightTheme = {
   secondaryTextColor: "#6B6B6B", // Placeholder or low emphasis
   successTextColor: "#2ECC71", // for feedback response
   dangerTextColor: "#E74C3C", // for feedback response
+
+  // Chat bubbles colors
+  userChatBubbleBackgroundColor: "#1e1e1e", // Chat bubble background
+  userChatBubbleBorderColor: "#5c5c5c", // Chat bubble border
+  userChatBubbleTextColor: "#E0E0E0", // chat bubble text
+  systemChatBubbleBackgroundColor: "#262626 ", // Chat bubble background
+  systemChatBubbleBorderColor: "#5c5c5c", // Chat bubble border
+  systemChatBubbleTextColor: "#F5F5F5", // Chat bubble border
 
   // Accent & Interactive
   accentColor: "#3F8CFF", // Same accent blue (consistency)

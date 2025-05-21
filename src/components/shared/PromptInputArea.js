@@ -3,6 +3,11 @@ import theme from "../../theme";
 import { styled } from "@mui/material";
 import PromptSubmitButton from "./PromptSubmitButton";
 import AddIcon from "@mui/icons-material/Add";
+import { useNavigate } from "react-router-dom";
+import LoadingOverlay from "./LoadingOverlay";
+import mockResumeDB from "../../data/mockResumeDB";
+
+//// stying section code section is below ///
 
 const PromptInputContainer = styled("form")({
   background: theme.inputBackground,
@@ -31,7 +36,7 @@ const PromptInputContainer = styled("form")({
 
 const PromptInputTextarea = styled("textarea")({
   background: "transparent",
-  color: theme.primaryTextColor,
+  color: theme.highlightColor,
   overflow: "hidden",
   border: "none",
   outline: "none",
@@ -40,8 +45,8 @@ const PromptInputTextarea = styled("textarea")({
   fontSize: "15px",
   width: "-webkit-fill-available",
   "&::placeholder": {
-    color: theme.secondaryTextColor,
-    fontWeight: "600",
+    color: theme.primaryTextColor,
+    fontWeight: "400",
     fontSize: "15px",
     opacity: 1,
   },
@@ -119,9 +124,23 @@ const Icon = styled(AddIcon)({
   },
 });
 
-function PromptInputArea(props) {
+const PromptInputAreaWrapper = styled("div")({
+  width: "-webkit-fill-available",
+  position: "fixed",
+  left: 0,
+  bottom: 0,
+  justifyItems: "center",
+  backgroundColor: theme.mainBackgroundColor,
+});
+
+// Main code //
+
+function PromptInputArea({ isNewChat, updateChat, isSystemThinking }) {
   const textareaRef = useRef(null);
   const [prompt, setPrompt] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleInput = () => {
     const textarea = textareaRef.current;
@@ -137,33 +156,92 @@ function PromptInputArea(props) {
     setPrompt(value);
   };
 
-  return (
-    <PromptInputContainer
-      action="/"
-      method="Post"
-      onSubmit={(evt) => {
-        evt.preventDefault();
-      }}
-      sx={{ margin: "40px 0 0" }}
-    >
-      <PromptInputTextarea
-        id="prompt"
-        ref={textareaRef}
-        onInput={handleInput}
-        rows={"auto"}
-        value={prompt}
-        onChange={handleChange}
-        name="prompt"
-        placeholder="Type your prompt here..."
-      />
+  const handleMouseEnter = () => {
+    const textarea = textareaRef.current;
+    if (textarea) {
+      textarea.style.height = "auto"; // Reset height
+      textarea.style.height = `${textarea.scrollHeight}px`; // Expand to fit content
+    }
+    textarea.focus();
+  };
 
-      <BottomItemsWrapper>
-        <ImportButton>
-          <Icon />
-        </ImportButton>
-        <PromptSubmitButton />
-      </BottomItemsWrapper>
-    </PromptInputContainer>
+  function generateResumeName(prompt) {
+    const words = prompt.split(" ").slice(0, 5).join(" ");
+    return `${words}...`;
+  }
+
+  function generateResumeId() {
+    let i = Math.floor(Math.random() * 1000000);
+    return i;
+  }
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+
+    if (isNewChat) {
+      const resumeName = generateResumeName(prompt);
+      const resumeId = generateResumeId();
+
+      setLoading(true); // start loading animation
+
+      const newResume = {
+        _id: resumeId, // you can write this function
+        name: resumeName, // you can write this function
+        createdAt: new Date().toISOString(),
+        chats: [
+          {
+            sender: "user",
+            message: prompt,
+            timestamp: new Date().toISOString,
+          },
+        ],
+        needsInitialResponse: true, // 👈 important
+      };
+
+      mockResumeDB.allResumes.push(newResume);
+
+      setTimeout(() => {
+        setLoading(false); // stop loading animation
+        navigate(`/${resumeId}/prompt-workspace`);
+      }, 500);
+    } else {
+      updateChat(prompt);
+      setPrompt("");
+    }
+  };
+
+  return (
+    <PromptInputAreaWrapper>
+      <LoadingOverlay isLoading={loading} />
+      <PromptInputContainer
+        action="/prompt-workspace"
+        method="Post"
+        onSubmit={handleSubmit}
+        sx={{ margin: "40px 0 0" }}
+      >
+        <PromptInputTextarea
+          id="prompt"
+          onMouseEnter={handleMouseEnter}
+          ref={textareaRef}
+          onInput={handleInput}
+          rows={"auto"}
+          value={prompt}
+          onChange={handleChange}
+          name="prompt"
+          placeholder="Type your prompt here..."
+        />
+
+        <BottomItemsWrapper>
+          <ImportButton>
+            <Icon />
+          </ImportButton>
+          <PromptSubmitButton
+            disabled={isSystemThinking}
+            isPromptNull={prompt === "" || prompt === " " ? true : false}
+          />
+        </BottomItemsWrapper>
+      </PromptInputContainer>
+    </PromptInputAreaWrapper>
   );
 }
 

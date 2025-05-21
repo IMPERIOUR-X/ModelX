@@ -1,6 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import theme from "../../theme";
 import { styled } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import mockResumeDB from "../../data/mockResumeDB";
+import LoadingOverlay from "../shared/LoadingOverlay";
 
 const starterItems = [
   "Write a resume for a frontend developer job",
@@ -73,24 +76,31 @@ const QuickStarterText = styled("h6")({
 function QuickStarterSection() {
   const scrollRef = useRef(null);
   const intervalRef = useRef(null);
+  const promptTextRef = useRef(null);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  // Auto-scroll logic
-  useEffect(() => {
-    const startAutoScroll = () => {
-      if (scrollRef.current) {
-        intervalRef.current = setInterval(() => {
-          scrollRef.current.scrollLeft += 1;
-        }, 20);
-      }
-    };
+  try {
+    // Auto-scroll logic
+    useEffect(() => {
+      const startAutoScroll = () => {
+        if (scrollRef.current) {
+          intervalRef.current = setInterval(() => {
+            scrollRef.current.scrollLeft += 1;
+          }, 20);
+        }
+      };
 
-    const stopAutoScroll = () => {
-      clearInterval(intervalRef.current);
-    };
+      const stopAutoScroll = () => {
+        clearInterval(intervalRef.current);
+      };
 
-    startAutoScroll();
-    return stopAutoScroll;
-  }, []);
+      startAutoScroll();
+      return stopAutoScroll;
+    }, []);
+  } catch {
+    console.log("form submitted");
+  }
 
   const handleHover = () => clearInterval(intervalRef.current);
 
@@ -102,13 +112,55 @@ function QuickStarterSection() {
     }, 20);
   };
 
+  function generateResumeName(prompt) {
+    const words = prompt.split(" ").slice(0, 5).join(" ");
+    return `${words}...`;
+  }
+
+  function generateResumeId() {
+    let i = Math.floor(Math.random() * 1000000);
+    return i;
+  }
+
+  const handleClick = async () => {
+    const prompt = promptTextRef.current.innerText;
+    const resumeName = generateResumeName(prompt);
+    const resumeId = generateResumeId();
+
+    setLoading(true); // start loading animation
+
+    const newResume = {
+      _id: resumeId, // you can write this function
+      name: resumeName, // you can write this function
+      createdAt: new Date().toISOString(),
+      chats: [
+        {
+          sender: "user",
+          message: prompt,
+          timestamp: new Date().toISOString,
+        },
+      ],
+      needsInitialResponse: true, // 👈 important
+    };
+
+    mockResumeDB.allResumes.push(newResume);
+
+    setTimeout(() => {
+      setLoading(false); // stop loading animation
+      navigate(`/${resumeId}/prompt-workspace`);
+    }, 500);
+  };
+
   return (
     <QuickStarterWrapper ref={scrollRef}>
+      <LoadingOverlay isLoading={loading} />
       {starterItems.map((value, index) => (
         <QuickStarter
+          ref={promptTextRef}
           key={index}
           onMouseEnter={handleHover}
           onMouseLeave={handleLeave}
+          onClick={handleClick}
         >
           <QuickStarterText>{value}</QuickStarterText>
         </QuickStarter>

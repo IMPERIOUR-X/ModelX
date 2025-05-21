@@ -3,6 +3,7 @@ import theme from "../../theme";
 import { styled } from "@mui/material";
 import { PrimaryFilledLinkButton } from "./Buttons";
 import CustomAvatar from "./CustomAvatar";
+import { useAuth } from "../../context/AuthContext";
 
 const Header = styled("header")({
   backgroundColor: theme.mainBackgroundColor,
@@ -43,14 +44,16 @@ const AvatarWrapper = styled("div")({
   marginLeft: "auto",
 });
 
-function AppHeader({ authenticated }) {
+function AppHeader() {
+  const { user } = useAuth();
+
   return (
     <Header>
       <BrandWrapper>
         <BrandName>ModelX</BrandName>
       </BrandWrapper>
 
-      {authenticated ? (
+      {user !== null ? (
         <AvatarWrapper>
           <CustomAvatar name="Unknown" />
         </AvatarWrapper>
@@ -60,6 +63,7 @@ function AppHeader({ authenticated }) {
           sx={{ marginBottom: "3px", marginLeft: "auto" }}
         >
           Log in
+          {console.log(user)}
         </PrimaryFilledLinkButton>
       )}
     </Header>
