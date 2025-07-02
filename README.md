@@ -34,6 +34,11 @@ Currently, the resume generation is in demo mode. When a user submits their firs
 
 modelx-frontend/ ├── components/ ├── pages/ ├── context/ ├── data/ ├── hooks/ ├── theme.js ├── AppRouter.js ├── App.js
 
+# 👤 Author
+
+Prosper Emmanuel – Frontend Developer
+💼 Built with ❤️ as a portfolio-grade real-world application
+
 ## 🛠️ Installation
 
 ```bash
@@ -42,7 +47,3 @@ cd modelx
 npm install
 npm start
 
-👤 Author
-
-Prosper Emmanuel – Frontend Developer
-💼 Built with ❤️ as a portfolio-grade real-world application
