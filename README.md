@@ -24,9 +24,9 @@ ModelX is an intelligent resume generation platform designed to help users craft
 ## 📷 Screenshots
 <img src="./public/screenshot-landingpage.png" width="600" />
 <img src="./public/screenshot-homepage.png" width="600" />
-<img src="./public/screenshot-prompt_workspace.png" width="600" />
-<img src="./public/screenshot-resume_workspace.png" width="600" />
-<img src="./public/screenshot-settings.png" width="600" />
+<img src="./public/screenshot-prompt-workspace.png" width="600" />
+<img src="./public/screenshot-resume-workspace.png" width="600" />
+<img src="./public/screenshot-settingpage.png" width="600" />
 
 ---
 
